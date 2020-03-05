@@ -19,9 +19,14 @@ public class NoteRepository {
     dao = database.getNoteDao();
   }
 
-  public Completable add(Note note) {
+  public Completable save(Note note) {
+    if (note.getId() == 0) {
     return Completable.fromSingle(dao.insert(note)
-        .subscribeOn(Schedulers.io()));
+        .subscribeOn(Schedulers.io()));}
+    else {
+      return Completable.fromSingle(dao.update(note)
+      .subscribeOn(Schedulers.io()));
+    }
   }
 
   public Completable remove(Note note) {

@@ -58,4 +58,10 @@ public class Note {
   public void setText(@NonNull String text) {
     this.text = text;
   }
+
+  @NonNull
+  @Override
+  public String toString() {
+    return String.format("[%1$s] %2$s", created, subject);
+  }
 }
